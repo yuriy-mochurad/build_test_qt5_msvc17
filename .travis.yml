@@ -7,9 +7,6 @@ matrix:
   include:
     - name: Windows (VS2017 64)
       os: windows
-env:
-  # - MSBUILD_PATH="/c/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/MSBuild/15.0/Bin"
-  # - MSBUILD_PATH="/c/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin"
 
 before_script:
   - export WINKITS_10=`find "/c/Program Files (x86)/Windows Kits/10" -name rc.exe -printf "%h\n" | grep x64`
@@ -25,7 +22,11 @@ before_script:
   - echo $WINKITS_10
 
   - echo $TRAVIS_OS_NAME
-  - wget -v -O ~/qt-unified-windows-x86-online.exe https://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe
+  - curl -vLo ~/qt-unified-windows-x86-online.exe http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe
+  - travis wait 30 |
+    if ! ~/qt-unified-windows-x86-online.exe --verbose --script scripts/qt-installer-windows.qs > ~/qt-installer-output.txt; then
+      cat ~/qt-installer-output.txt; exit 1
+    fi
   - travis_wait 30 ~/qt-unified-windows-x86-online.exe --verbose --script scripts/qt-installer-windows.qs
   - export PATH="/c/Qt/Tools/QtCreator/bin:/c/Qt/Tools/QtCreator/bin/clang/bin:/c/Qt/5.12.0/msvc2017_64/bin":$PATH;
 
