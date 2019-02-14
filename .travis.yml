@@ -8,6 +8,11 @@ matrix:
     - name: Windows (VS2017 64)
       os: windows
 
+before script:
+  - export PATH="$WINKITS_10;C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\bin\HostX64\x64;"$PATH
+  - export LIB="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\ATLMFC\lib\x64;C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\lib\x64;"
+  - export INCLUDE="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\atlmfc\include;"
+  - export INCLUDE="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\include;"$INCLUDE
 
 script:
   - echo $PATH
