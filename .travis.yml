@@ -8,33 +8,6 @@ matrix:
     - name: Windows (VS2017 64)
       os: windows
 
-before_script:
-  - export WINKITS_10=`find "/c/Program Files (x86)/Windows Kits/10" -name rc.exe -printf "%h\n" | grep x64`
-  - export VS2017_PATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023"
-
-  # export path lib and include for VS2017
-  # export PATH="$MSBUILD_PATH;"$PATH
-  - export PATH="$WINKITS_10;C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\bin\HostX64\x64;"$PATH
-  - export LIB="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\ATLMFC\lib\x64;C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\lib\x64;"
-  - export INCLUDE="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\atlmfc\include;"
-  - export INCLUDE="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\include;"$INCLUDE
-
-  - echo $WINKITS_10
-
-  - echo $TRAVIS_OS_NAME
-  - curl -vLo ~/qt-unified-windows-x86-online.exe http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe
-  - travis wait 30 |
-    if ! ~/qt-unified-windows-x86-online.exe --verbose --script scripts/qt-installer-windows.qs > ~/qt-installer-output.txt; then
-      cat ~/qt-installer-output.txt; exit 1
-    fi
-  - travis_wait 30 ~/qt-unified-windows-x86-online.exe --verbose --script scripts/qt-installer-windows.qs
-  - export PATH="/c/Qt/Tools/QtCreator/bin:/c/Qt/Tools/QtCreator/bin/clang/bin:/c/Qt/5.12.0/msvc2017_64/bin":$PATH;
 
 script:
   - echo $PATH
-  - qmake.exe QtObjectLoader.pro -spec win32-msvc
-  - jom.exe qmake_all
-  - jom.exe
-  - cd catch2_tests/release
-  - windeployqt.exe ./catch2_tests.exe
-  - ./catch2_tests.exe
