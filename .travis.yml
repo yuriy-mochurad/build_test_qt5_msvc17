@@ -17,3 +17,4 @@ before script:
 script:
   - echo $PATH
   - echo $LIB
+  - echo $PATH
