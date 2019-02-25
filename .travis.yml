@@ -22,19 +22,6 @@ before_script:
   - echo $WINKITS_10
 
   - echo $TRAVIS_OS_NAME
-  - curl -vLo ~/qt-unified-windows-x86-online.exe http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe
-  - travis wait 30 |
-    if ! ~/qt-unified-windows-x86-online.exe --verbose --script scripts/qt-installer-windows.qs > ~/qt-installer-output.txt; then
-      cat ~/qt-installer-output.txt; exit 1
-    fi
-  - travis_wait 30 ~/qt-unified-windows-x86-online.exe --verbose --script scripts/qt-installer-windows.qs
-  - export PATH="/c/Qt/Tools/QtCreator/bin:/c/Qt/Tools/QtCreator/bin/clang/bin:/c/Qt/5.12.0/msvc2017_64/bin":$PATH;
 
 script:
   - echo $PATH
-  - qmake.exe QtObjectLoader.pro -spec win32-msvc
-  - jom.exe qmake_all
-  - jom.exe
-  - cd catch2_tests/release
-  - windeployqt.exe ./catch2_tests.exe
-  - ./catch2_tests.exe
