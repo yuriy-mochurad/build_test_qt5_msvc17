@@ -7,3 +7,4 @@ commit 1!
 commit 2!
 test branch2: commit 1!
 test branch2: commit 2!
+test_branch3: commit 1!
