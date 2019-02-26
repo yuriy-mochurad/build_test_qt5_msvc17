@@ -5,3 +5,4 @@ HELLO HELLO!
 more Hello!
 commit 1!
 commit 2!
+test branch2: commit 1!
