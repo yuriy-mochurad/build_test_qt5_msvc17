@@ -1,3 +1,6 @@
 commit 1!
 
 commit 2!
+
+test_branch4: commit 1!
+test_branch4: commit 2!
