@@ -9,3 +9,4 @@ test branch2: commit 1!
 test branch2: commit 2!
 test_branch3: commit 1!
 test_branch8: commit 1!
+test branch8: commit 2!
