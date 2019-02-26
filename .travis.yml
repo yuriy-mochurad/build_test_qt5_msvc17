@@ -3,6 +3,12 @@ sudo: required
 git:
   depth: 1
 
+# blocklist
+branches:
+  except:
+    - /^rebase.*$/
+    - /^cherry-pick.*$/
+
 matrix:
   include:
     - name: Windows (VS2017 64)
